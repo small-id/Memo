@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/task_list_time"
+        android:textSize="10sp"
+        android:textStyle="normal"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_height="40sp" />
+    <TextView
+        android:id="@+id/task_item"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:gravity="center|left"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="40sp" />
+</LinearLayout>
