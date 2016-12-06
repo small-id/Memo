@@ -1,7 +1,9 @@
 package com.mingjiang.android.app.memo;
 
 import android.app.DatePickerDialog;
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +11,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextPaint;
@@ -45,10 +50,11 @@ public class MemoMainActivity extends AppCompatActivity {
     Button selectdate;
     String selectedDate;
     TextView title;
-    List<Map<String,String>> taskList;
+    public static  List<Map<String,String>> taskList;
     int hintYear;
     int hintMonth;
     int hintDay;
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,15 +63,15 @@ public class MemoMainActivity extends AppCompatActivity {
         addcommit=(TextView)findViewById(R.id.add_list) ;
         selectdate=(Button) findViewById(R.id.select_date);
         title=(TextView)findViewById(R.id.title);
+        Long aaa=System.currentTimeMillis();
 
         //获取当前日期的年月日
         Calendar calendar = Calendar.getInstance();
         hintYear=calendar.get(Calendar.YEAR);
         hintMonth=calendar.get(Calendar.MONTH) + 1;
-        //int showhintMonth=calendar.get(Calendar.MONTH) + 1;
         hintDay=calendar.get(Calendar.DAY_OF_MONTH);
 
-
+        startService(new Intent(this,NotificationService.class));
 
         Intent intent = getIntent();
         String addTaskDay = intent.getStringExtra("addTaskDay");

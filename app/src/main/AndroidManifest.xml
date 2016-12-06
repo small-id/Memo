@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".MemoDetailActivity"/>
         <activity android:name=".MemoAddActivity"/>
+        <service android:name=".NotificationService" />
     </application>
-
+    <uses-permission android:name="android.permission.VIBRATE" />
 </manifest>
