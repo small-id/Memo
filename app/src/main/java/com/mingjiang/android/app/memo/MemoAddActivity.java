@@ -99,7 +99,6 @@ public class MemoAddActivity extends AppCompatActivity {
         });
     }
     protected void showDatePickDlg() {
-        Calendar calendar = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(MemoAddActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
