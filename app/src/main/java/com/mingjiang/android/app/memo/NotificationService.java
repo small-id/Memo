@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.mingjiang.android.app.memo.MemoMainActivity.publicTaskId;
 import static com.mingjiang.android.app.memo.MemoMainActivity.taskList;
 
 public class NotificationService extends Service {
@@ -46,9 +47,7 @@ public class NotificationService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		messageNotificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		messageIntent = new Intent(this, MemoMainActivity.class);
-		messagePendingIntent = PendingIntent.getActivity(this, 0,
-				messageIntent, 0);
+
 
 		Timer timer=new Timer();
 		timer.schedule(new noficationshow(),1,1000*60);
@@ -65,9 +64,14 @@ public class NotificationService extends Service {
 				taskMap=taskList.get(i);
 
 				String taskTime=taskMap.get("taskTime");
-				String taskDetail=taskMap.get("taskDetail");
 
 				if(taskTime.equalsIgnoreCase(nowTime)){
+					publicTaskId=taskMap.get("taskId");
+					messageIntent = new Intent(NotificationService.this, MemoDetailActivity.class);
+					//messageIntent.putExtra("taskId",taskId);
+					messagePendingIntent = PendingIntent.getActivity(NotificationService.this, 0, messageIntent, 0);
+
+					String taskDetail=taskMap.get("taskDetail");
 					messageNotification = new Notification.Builder(NotificationService.this)
 							.setSmallIcon(R.mipmap.ic_launcher)
 							.setTicker("有一条备忘事项！")
@@ -75,9 +79,10 @@ public class NotificationService extends Service {
 							.setContentIntent(messagePendingIntent)
 							.setContentTitle("有一条备忘事项！")
 							.setContentText(taskDetail)
+							.setAutoCancel(true)
 							.build();
 					// 更新通知栏
-					startForeground(1, messageNotification);
+					//startForeground(1, messageNotification);
 					messageNotificatioManager.notify(messageNotificationID,messageNotification);
 					// 每次通知完，通知ID递增一下，避免消息覆盖掉
 					messageNotificationID++;

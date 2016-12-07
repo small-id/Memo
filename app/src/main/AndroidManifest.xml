@@ -3,6 +3,7 @@
     package="com.mingjiang.android.app.memo">
 
     <application
+        android:persistent="true"
         android:allowBackup="true"
         android:icon="@mipmap/map"
         android:label="@string/app_name"

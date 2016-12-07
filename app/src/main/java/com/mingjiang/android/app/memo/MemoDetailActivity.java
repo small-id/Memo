@@ -23,6 +23,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.mingjiang.android.app.memo.MemoMainActivity.publicTaskId;
+
 /**
  * Created by hasee on 2016/11/29.
  */
@@ -59,8 +61,8 @@ public class MemoDetailActivity extends AppCompatActivity {
         tupdate=(Button)findViewById(R.id.edit_commit);
         tdetete=(Button)findViewById(R.id.delete_task);
         Intent intent = getIntent();
-        taskId = intent.getStringExtra("taskId");
-
+        //taskId = intent.getStringExtra("taskId");
+        taskId=publicTaskId;
         DatabaseHelper database = new DatabaseHelper(this);//这段代码放到Activity类中才用this
         SQLiteDatabase db = null;
         db = database.getReadableDatabase();

@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.mingjiang.android.app.memo.MemoMainActivity.publicTaskId;
+
 
 /**
  * Created by hasee on 2016/11/28.
@@ -81,6 +83,7 @@ public class todayTaskAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, MemoDetailActivity.class);
+                publicTaskId=finalTaskMap.get("taskId");
                 intent.putExtra("taskId", finalTaskMap.get("taskId"));
                 intent.putExtra("taskDetail", finalTaskMap.get("taskDetail"));
                 intent.putExtra("taskStatus", finalTaskMap.get("taskStatus"));

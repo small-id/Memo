@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.text.TextPaint;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -54,6 +55,7 @@ public class MemoMainActivity extends AppCompatActivity {
     int hintYear;
     int hintMonth;
     int hintDay;
+    public static String publicTaskId="";
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
